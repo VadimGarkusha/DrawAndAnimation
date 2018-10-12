@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">VadymHarkusha_COMP304_Lab3</string>
+    <string name="select">Select</string>
+    <string name="welcomeText">Select a task to show the solution:</string>
+    <string name="task1">Task one</string>
+    <string name="task2">Task two</string>
+    <string name="task3">Task three</string>
+    <string name="thickness">Line thickness</string>
+    <string name="color">Line color</string>
+    <string name="clear">Clear</string>
+    <string-array name="thicknessAr">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+    </string-array>
+    <string-array name="colorAr">
+        <item>White</item>
+        <item>Red</item>
+        <item>Yellow</item>
+        <item>Blue</item>
+        <item>Green</item>
+    </string-array>
+</resources>
