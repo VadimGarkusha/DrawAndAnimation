@@ -1,59 +1,23 @@
 package com.example.vadimgarkusha.vadymharkusha_comp304_lab3;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 public class Task1Activity extends AppCompatActivity {
 
-
-    ImageView reusableImageView;
-
-    int startx = 10;
-    int starty = 10;
-    int endx = 10;
-    int endy = 10;
-    int color = Color.GREEN;
-    //
-    Paint paint;
-    Bitmap bitmap;
-    Canvas canvas;
+    private CanvasView customCanvas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task1);
 
-        //SETTING UP ENV FOR DRAWING
-        paint = new Paint();
-        paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(20);
-
-        //creating a bitmap as content view for the canvas
-        bitmap = Bitmap.createBitmap((int) getWindowManager()
-                .getDefaultDisplay().getWidth(), (int) getWindowManager()
-                .getDefaultDisplay().getHeight(), Bitmap.Config.ARGB_8888);
-
-        canvas = new Canvas(bitmap);
-
-        reusableImageView = findViewById(R.id.ImageViewForDrawing);
-        //setting a bitmap as content view for the image
-        reusableImageView.setImageBitmap(bitmap);
-        reusableImageView.setVisibility(View.VISIBLE);
+        customCanvas = findViewById(R.id.signature_canvas);
 
         //CHOOSE COLOR SPINNER
         Spinner spColors = findViewById(R.id.spColors);
@@ -65,25 +29,25 @@ public class Task1Activity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 switch ((int) id) {
                     case (0):
-                        color = Color.WHITE;
+                        customCanvas.setColor(Color.BLACK);
                         break;
                     case (1):
-                        color = Color.RED;
+                        customCanvas.setColor(Color.RED);
                         break;
                     case (2):
-                        color = Color.YELLOW;
+                        customCanvas.setColor(Color.YELLOW);
                         break;
                     case (3):
-                        color = Color.BLUE;
+                        customCanvas.setColor(Color.BLUE);
                         break;
                     case (4):
-                        color = Color.GREEN;
+                        customCanvas.setColor(Color.GREEN);
                         break;
                 }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                //paint.setColor(Color.WHITE);
+                customCanvas.setColor(Color.BLACK);
             }
 
         });
@@ -123,67 +87,24 @@ public class Task1Activity extends AppCompatActivity {
 
     }
 
-    public void clearCanvas(View v)
-    {
-        paint.setColor(Color.BLACK);
-    }
-
-    public void moveRect(Canvas canvas)
-    {
-        canvas.translate(endx-startx, endy-starty);
-        reusableImageView.setTranslationX(endx - startx);
-        reusableImageView.setTranslationY(endy - starty);
-        reusableImageView.setColorFilter(color);
-
-    }
-
-    public void drawLine(Canvas canvas)
-    {
-        canvas.drawLine(100,100,1000,1000,paint);
-        canvas.drawLine(startx, starty, endx, endy, paint);
-        startx=endx;
-        starty=endy;
-
-    }
-
     public void moveDown(View view){
-        reusableImageView.setVisibility(View.VISIBLE);
-        reusableImageView.setFocusable(true);
-        reusableImageView.requestFocus();
-        endy=endy+1;
-        drawLine(canvas);
-        moveRect(canvas);
-        reusableImageView.invalidate();
+        customCanvas.justMoveY(10);
     }
 
     public void moveTop(View view){
-        reusableImageView.setVisibility(View.VISIBLE);
-        reusableImageView.setFocusable(true);
-        reusableImageView.requestFocus();
-        endy=endy-1;
-        drawLine(canvas);
-        moveRect(canvas);
-        reusableImageView.invalidate();
+        customCanvas.justMoveY(-10);
     }
 
     public void moveRight(View view){
-        reusableImageView.setVisibility(View.VISIBLE);
-        reusableImageView.setFocusable(true);
-        reusableImageView.requestFocus();
-        endx=endx+1;
-        drawLine(canvas);
-        moveRect(canvas);
-        reusableImageView.invalidate();
+        customCanvas.justMoveX(10);
     }
 
     public void moveLeft(View view){
-        reusableImageView.setVisibility(View.VISIBLE);
-        reusableImageView.setFocusable(true);
-        reusableImageView.requestFocus();
-        endx=endx-1;
-        drawLine(canvas);
-        moveRect(canvas);
-        reusableImageView.invalidate();
+        customCanvas.justMoveX(-10);
+    }
+
+    public void clear(View view){
+        customCanvas.clearCanvas();
     }
 
 

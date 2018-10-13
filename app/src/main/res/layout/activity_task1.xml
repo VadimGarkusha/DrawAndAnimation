@@ -115,7 +115,7 @@
         android:layout_marginStart="-63dp"
         android:layout_marginTop="49dp"
         android:layout_marginEnd="-63dp"
-        android:onClick="clearCanvas"
+        android:onClick="clear"
         android:text="@string/clear" />
 
     <RelativeLayout
@@ -125,12 +125,12 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="6dp">
-        <ImageView
-            android:id="@+id/ImageViewForDrawing"
+        <com.example.vadimgarkusha.vadymharkusha_comp304_lab3.CanvasView
+            android:id="@+id/signature_canvas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:minHeight="100px"
-            android:minWidth="100px"></ImageView>
+            android:minWidth="100px"></com.example.vadimgarkusha.vadymharkusha_comp304_lab3.CanvasView>
     </RelativeLayout>
 
 </RelativeLayout>
