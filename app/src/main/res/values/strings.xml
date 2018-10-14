@@ -8,6 +8,8 @@
     <string name="thickness">Line thickness</string>
     <string name="color">Line color</string>
     <string name="clear">Clear</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
     <string-array name="thicknessAr">
         <item>5</item>
         <item>10</item>
@@ -16,7 +18,7 @@
         <item>25</item>
     </string-array>
     <string-array name="colorAr">
-        <item>White</item>
+        <item>Black</item>
         <item>Red</item>
         <item>Yellow</item>
         <item>Blue</item>

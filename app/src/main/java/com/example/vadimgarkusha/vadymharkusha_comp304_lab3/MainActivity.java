@@ -30,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                          intent = new Intent(getApplicationContext(), Task1Activity.class);
                          break;
+                    case 1:
+                        intent = new Intent(getApplicationContext(), Task2Activity.class);
+                        break;
 
                 }
                 startActivity(intent);
-
             }
         });
     }
