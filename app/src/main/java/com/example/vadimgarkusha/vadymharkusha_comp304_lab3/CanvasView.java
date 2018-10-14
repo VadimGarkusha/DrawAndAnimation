@@ -22,6 +22,7 @@ public class CanvasView extends View {
     private Path mPath;
     Context context;
     private Paint mPaint;
+    private Paint bitmapPaint;
     private float mX, mY;
     private static final float TOLERANCE = 5;
     List<Pair<Path, Integer>> path_color_list = new ArrayList<Pair<Path,Integer>>();
@@ -33,6 +34,7 @@ public class CanvasView extends View {
         mX =10;
         // we set a new Path
         mPath = new Path();
+        bitmapPaint = new Paint(Paint.DITHER_FLAG);
         // and we set a new Paint with the desired attributes
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
@@ -43,7 +45,7 @@ public class CanvasView extends View {
     }
 
     public void setThickness(float thickness){
-
+        mPaint.setStrokeWidth(thickness);
     }
 
     public void setColor(int color){
@@ -63,13 +65,13 @@ public class CanvasView extends View {
     // override onDraw
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        // draw the mPath with the mPaint on the canvas when onDraw
+        canvas.drawBitmap(mBitmap, 0, 0, bitmapPaint);
         canvas.drawPath(mPath, mPaint);
     }
 
     // when ACTION_DOWN start touch according to the x,y values
     private void startTouch(float x, float y) {
+        mPath.reset();
         mPath.moveTo(x, y);
         mX = x;
         mY = y;
@@ -87,8 +89,9 @@ public class CanvasView extends View {
     }
 
     public void clearCanvas() {
-        mPath.reset();
+        mBitmap.eraseColor(Color.WHITE);
         invalidate();
+        System.gc();
         mY =10;
         mX =10;
     }
@@ -96,6 +99,8 @@ public class CanvasView extends View {
     // when ACTION_UP stop touch
     private void upTouch() {
         mPath.lineTo(mX, mY);
+        mCanvas.drawPath(mPath, mPaint);
+        mPath.reset();
     }
 
     //override the onTouchEvent

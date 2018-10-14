@@ -58,32 +58,32 @@ public class Task1Activity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                 getResources().getStringArray(R.array.thicknessAr));
         spThickness.setAdapter(adapter);
-        /*spThickness.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spThickness.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 switch ((int) id) {
                     case (0):
-                        paint.setStrokeWidth(5);
+                        customCanvas.setThickness(5);
                         break;
                     case (1):
-                        paint.setStrokeWidth(10);
+                        customCanvas.setThickness(10);
                         break;
                     case (2):
-                        paint.setStrokeWidth(15);
+                        customCanvas.setThickness(15);
                         break;
                     case (3):
-                        paint.setStrokeWidth(20);
+                        customCanvas.setThickness(20);
                         break;
                     case (4):
-                        paint.setStrokeWidth(25);
+                        customCanvas.setThickness(35);
                         break;
                 }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                paint.setStrokeWidth(5);
+                customCanvas.setThickness(5);
             }
-        });*/
+        });
 
     }
 
